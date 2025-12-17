@@ -11,7 +11,6 @@ import org.hibernate.annotations.AnyDiscriminatorImplicitValues;
 @Entity
 @Table(name = "Users")
 @Data
-@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class User {
