@@ -6,29 +6,26 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.AnyDiscriminatorImplicitValues;
 
 @Entity
-@Table(name = "Users")
+@Table(name = "Order")
 @Data
+@AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@AllArgsConstructor
-public class User {
-    
+public class Order
+{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int user_id;
+    private int order_id;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 
     @Column
-    private String username;
+    private int total_amount;
 
     @Column
-    private String email;
-
-    @Column
-    private String password;
-
-    @Column
-    private String usertype;
+    private String status;
 }

@@ -6,29 +6,22 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.AnyDiscriminatorImplicitValues;
 
 @Entity
-@Table(name = "Users")
+@Table(name = "Category")
 @Data
 @NoArgsConstructor
-@Builder
 @AllArgsConstructor
-public class User {
-    
+@Builder
+public class Category {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int user_id;
+    private int category_id;
 
     @Column
-    private String username;
+    private String category_name;
 
     @Column
-    private String email;
-
-    @Column
-    private String password;
-
-    @Column
-    private String usertype;
+    private String image_url=null;
 }

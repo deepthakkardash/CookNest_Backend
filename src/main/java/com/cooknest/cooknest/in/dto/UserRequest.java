@@ -11,20 +11,19 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@Builder
 @NoArgsConstructor
+@Builder
 @AllArgsConstructor
 public class UserRequest {
 
-
     @Size(max = 20, min = 4,message = "Username must be 4-20 characters")
     @NotBlank(message = "Username is required")
-
     @UniqueUsername
     private String username;
 
     @Email(message = "Invalid Email")
 //    @UniquesEmail
+    @NotBlank(message = "Email is Required")
     private String email;
 
     @NotBlank(message = "Password is Required")

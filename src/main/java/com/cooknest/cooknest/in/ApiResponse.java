@@ -22,7 +22,7 @@ public class ApiResponse<T> {
     private T data;
 
     private String errorCode;
-    private List<ValidationErrors> errors;
+    private List<String> errors;
 
     public ApiResponse(){}
 
