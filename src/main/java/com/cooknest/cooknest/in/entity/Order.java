@@ -28,4 +28,19 @@ public class Order
 
     @Column
     private String status;
+
+    @ManyToOne
+    @JoinColumn(name = "address_id")
+    private Address deliver_address;
+
+    @ManyToOne
+    @JoinColumn(name = "address_id")
+    private Address billing_address;
+
+    @ManyToOne
+    @JoinColumn(name = "payment_method_id")
+    private Payment_Method payment_method;
+
+
+
 }

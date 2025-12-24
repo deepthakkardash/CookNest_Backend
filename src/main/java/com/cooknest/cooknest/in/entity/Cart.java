@@ -8,30 +8,21 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "Payment_Transaction")
+@Table(name = "Cart")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class Payment_Transaction {
-
+public class Cart
+{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int payment_transaction_id;
+    private int cart_id;
 
     @ManyToOne
-    @JoinColumn(name = "order_id")
-    private Order order;
+    @JoinColumn(name = "user_id")
+    private User user;
 
     @Column
-    private String gateway;
-
-    @Column
-    private String transaction_id;
-
-    @Column
-    private int amount;
-
-    @Column
-    private String status;
+    private int total_amount;
 }
