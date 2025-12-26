@@ -38,7 +38,7 @@ public class UserService {
     }
 
 
-    public ApiResponse<User> addUser(UserRequest userRequest)
+    public ResponseEntity<ApiResponse<User>> addUser(UserRequest userRequest)
     {
 
         System.out.println(userRequest);
@@ -46,7 +46,9 @@ public class UserService {
 
         userRepository.save(user);
 
-        return ApiResponse.success("Successfully Added",user);
+        ApiResponse<User> response=ApiResponse.success("Successfully Added",user);
+        return ResponseEntity.ok(response);
+
     }
 
 

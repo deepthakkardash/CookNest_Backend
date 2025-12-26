@@ -21,7 +21,7 @@ public class Payment_Transaction {
 
     @ManyToOne
     @JoinColumn(name = "order_id")
-    private Order order;
+    private Orders order;
 
     @Column
     private String gateway;

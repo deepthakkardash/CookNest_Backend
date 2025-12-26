@@ -45,7 +45,7 @@ public class AuthController {
 
 
     @PostMapping("/register")
-    public ApiResponse<User> AddUser(@RequestBody UserRequest userRequest)
+    public ResponseEntity<ApiResponse<User>> AddUser(@RequestBody UserRequest userRequest)
     {//@Valid Removed from parameter part
         log.info("Comes in controller");
         return userService.addUser(userRequest);

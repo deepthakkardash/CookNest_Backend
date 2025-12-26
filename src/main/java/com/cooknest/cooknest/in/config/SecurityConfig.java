@@ -12,6 +12,7 @@
     import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
     import org.springframework.security.config.annotation.web.builders.HttpSecurity;
     import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+    import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
     import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
     import org.springframework.security.crypto.password.PasswordEncoder;
     import org.springframework.security.web.SecurityFilterChain;
@@ -23,8 +24,7 @@
     public class SecurityConfig
     {
 
-        @Autowired
-        private JwtAuthFilter jwtAuthFilter;
+        private final JwtAuthFilter jwtAuthFilter;
 
         private final CustomUserDetailsService customUserDetailsService;
 
@@ -33,8 +33,8 @@
         {
 
             http
-                    .csrf(csrf->csrf.disable())
-                    .authorizeHttpRequests(auth->auth.requestMatchers("/cooknest/login","/cooknest/register").permitAll().anyRequest().authenticated())
+                    .csrf(AbstractHttpConfigurer::disable)
+                    .authorizeHttpRequests(auth->auth.requestMatchers("/cooknest/login","/cooknest/register", "/uploads/**").permitAll().anyRequest().authenticated())
                     .authenticationProvider(authenticationProvider())
                     .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
 
@@ -43,8 +43,8 @@
 
         @Bean
         public DaoAuthenticationProvider authenticationProvider() {
-            DaoAuthenticationProvider provider = new DaoAuthenticationProvider(customUserDetailsService);
-    //        provider.setUserDetailsService(customUserDetailsService);
+            DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
+            provider.setUserDetailsService(customUserDetailsService);
             provider.setPasswordEncoder(passwordEncoder());
             return provider;
         }
