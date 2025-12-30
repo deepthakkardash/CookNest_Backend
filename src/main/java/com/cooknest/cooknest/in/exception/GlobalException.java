@@ -52,4 +52,18 @@ public class GlobalException {
         return ResponseEntity.badRequest().body(response);
     }
 
+
+    @ExceptionHandler(DishNotFoundException.class)
+    public ResponseEntity<ApiResponse<String>> handleDishnotFoundException(DishNotFoundException ex)
+    {
+        ApiResponse<String> response=new ApiResponse<>().error(ex.getMessage(), "NOT_FOUND");
+        return ResponseEntity.badRequest().body(response);
+    }
+
+    @ExceptionHandler(CategoryNotFoundException.class)
+    public ResponseEntity<ApiResponse<String>> handleCategoryNotFoundException(CategoryNotFoundException ex)
+    {
+        ApiResponse<String> response=new ApiResponse<>().error(ex.getMessage(),"NOT_FOUND");
+        return ResponseEntity.badRequest().body(response);
+    }
 }

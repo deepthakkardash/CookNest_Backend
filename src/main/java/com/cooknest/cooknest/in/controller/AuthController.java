@@ -21,6 +21,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.web.bind.annotation.*;
 
 @Slf4j
+//@CrossOrigin(origins = "http://localhost:5173", allowCredentials = "true")
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/cooknest")

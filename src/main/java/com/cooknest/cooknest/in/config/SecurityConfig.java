@@ -9,6 +9,7 @@
     import org.springframework.context.annotation.Configuration;
     import org.springframework.security.authentication.AuthenticationManager;
     import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
+    import org.springframework.security.config.Customizer;
     import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
     import org.springframework.security.config.annotation.web.builders.HttpSecurity;
     import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -33,8 +34,12 @@
         {
 
             http
+
+                    .cors(Customizer.withDefaults())
                     .csrf(AbstractHttpConfigurer::disable)
-                    .authorizeHttpRequests(auth->auth.requestMatchers("/cooknest/login","/cooknest/register", "/uploads/**").permitAll().anyRequest().authenticated())
+                    .authorizeHttpRequests(auth->auth.requestMatchers("/cooknest/login","/cooknest/register", "/uploads/**","/menu/**", "/swagger-ui/**",
+                            "/v3/api-docs/**",
+                            "/swagger-ui.html").permitAll().anyRequest().authenticated())
                     .authenticationProvider(authenticationProvider())
                     .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
 
